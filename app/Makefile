@@ -26,14 +26,12 @@ SDK_PATH= $(parent_dir)
 BIN_PATH=$(SDK_PATH)/bin
 
 
-
 ifndef PDIR # {
 GEN_IMAGES= eagle.app.v6.out
 GEN_BINS= eagle.app.v6.bin
 SPECIAL_MKTARGETS=$(APP_MKTARGETS)
 SUBDIRS=    \
-	user    \
-	sample_lib
+	user
 
 endif # } PDIR
 
@@ -56,8 +54,7 @@ ifeq ($(FLAVOR),release)
 endif
 
 COMPONENTS_eagle.app.v6 = \
-	user/libuser.a  \
-	sample_lib/libsample.a
+	user/libuser.a
 
 LINKFLAGS_eagle.app.v6 = \
 	-L$(SDK_PATH)/lib        \
@@ -68,28 +65,20 @@ LINKFLAGS_eagle.app.v6 = \
     -u call_user_start	\
 	-Wl,-static						\
 	-Wl,--start-group					\
-	-lcirom \
-	-lcrypto	\
-	-lespconn	\
-	-lespnow	\
-	-lfreertos	\
+	-lminic \
 	-lgcc					\
 	-lhal					\
-	-ljson	\
-	-llwip	\
-	-lmain	\
-	-lmesh	\
-	-lmirom	\
-	-lnet80211	\
-	-lnopoll	\
 	-lphy	\
 	-lpp	\
-	-lpwm	\
-	-lsmartconfig	\
-	-lspiffs	\
-	-lssl	\
+	-lnet80211	\
 	-lwpa	\
-	-lwps		\
+	-lcrypto    \
+	-lmain	\
+	-lfreertos	\
+	-llwip	\
+	-lespconn\
+	-lsmartconfig \
+	-lairkiss\
 	$(DEP_LIBS_eagle.app.v6)					\
 	-Wl,--end-group
 
